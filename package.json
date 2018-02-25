@@ -1,19 +1,19 @@
 {
-  "name": "node-install",
-  "version": "1.1.0",
-  "description": "Extremely simple node install script written in bash.",
-  "main": "node-install",
+  "name": "node-and-npm",
+  "version": "1.0.0",
+  "description": "extremely simple node and npm install script written in bash",
+  "main": "install",
   "bin": {
-    "node-install": "./node-install"
+    "node-install": "./install"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mafintosh/node-install"
+    "url": "https://github.com/serapath/node-and-npm"
   },
-  "author": "Mathias Buus (@mafintosh)",
+  "author": "@serapath",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mafintosh/node-install/issues"
+    "url": "https://github.com/serapath/node-and-npm/issues"
   },
-  "homepage": "https://github.com/mafintosh/node-install"
+  "homepage": "https://serapath.github.io/node-and-npm"
 }
