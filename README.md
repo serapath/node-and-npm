@@ -1,10 +1,9 @@
-# node-install
-
+# node-and-npm
 extremely simple node and npm install script written in bash
 
-One-line install
-
-	@TODO
+# usage
+one-line install
+`@TODO`
 
 
 It is licensed under MIT
