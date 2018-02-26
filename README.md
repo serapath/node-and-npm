@@ -2,7 +2,7 @@
 extremely simple node and npm install script written in bash
 
 # usage
-one-line install
+one-line installs latest stable versions of `node`, `npm` and `npx`
 
 `curl -fs https://raw.githubusercontent.com/serapath/node-and-npm/master/install | sh`
 
