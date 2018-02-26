@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
- 
+
 if [ $1 ]; then
   export SHELL_PROFILE=$1
 else
   export SHELL_PROFILE=$HOME/.bashrc
 fi
- 
+
 set -ue
 
 error () {
@@ -33,7 +33,7 @@ install () {
   local NPM_DIR=$HOME'/.npm-global'
   local CMD_PATH='PATH='$NPM_DIR'/bin:$PATH'
   local url=https://nodejs.org/dist/v$version/node-v$version-$os-$arch.tar.gz
- 
+
   echo downloading...
   mkdir -p $tmpdir
 
@@ -42,21 +42,21 @@ install () {
   else
     curl -fs $url | tar -zxC $tmpdir --strip-components 1
   fi
- 
+
   if [ $? != 0 ]; then
     rm -rf $tmpdir
     exit 1
   fi
- 
+
   touch $SHELL_PROFILE
   grep -qF -- "$CMD_PATH" "$SHELL_PROFILE" || echo "$CMD_PATH" >> "$SHELL_PROFILE"
- 
+
   export PATH=$tmpdir/bin:$PATH
   # https://docs.npmjs.com/getting-started/fixing-npm-permissions
   mkdir -p $NPM_DIR
   npm config set prefix $NPM_DIR
   PATH=$NPM_DIR/bin:$PATH
- 
+
   npm install -g npm
   npm install -g node
 
@@ -66,17 +66,20 @@ install () {
   local npmpath=$(readlink -f $NPM_DIR/bin/npm)
   local npxpath=$(readlink -f $NPM_DIR/bin/npx)
 
-  if [[ "$PATH" =~ $HOME"/.local/bin" ]]; then
-    mkdir -p $HOME/.local/bin
-    ln -sf $nodepath $HOME/.local/bin/node
-    ln -sf $npmpath $HOME/.local/bin/npm
-    ln -sf $npxpath $HOME/.local/bin/npx
-  elif [[ "$PATH" =~ $HOME"/bin" ]]; then
-    mkdir -p $HOME/bin
-    ln -sf $nodepath $HOME/bin/node
-    ln -sf $npmpath $HOME/bin/npm
-    ln -sf $npxpath $HOME/bin/npx
-  fi
+  case ":$PATH:" in
+    *:$HOME/.local/bin:*)
+      mkdir -p $HOME/.local/bin
+      ln -sf $nodepath $HOME/.local/bin/node
+      ln -sf $npmpath $HOME/.local/bin/npm
+      ln -sf $npxpath $HOME/.local/bin/npx
+      ;;
+    *:$HOME//bin:)
+      mkdir -p $HOME/bin
+      ln -sf $nodepath $HOME/bin/node
+      ln -sf $npmpath $HOME/bin/npm
+      ln -sf $npxpath $HOME/bin/npx
+      ;;
+  esac
 }
- 
+
 install
