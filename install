@@ -66,12 +66,12 @@ install () {
   local npmpath=$(readlink -f $NPM_DIR/bin/npm)
   local npxpath=$(readlink -f $NPM_DIR/bin/npx)
 
-  if [[ "$PATH" =~ (^|:)"${HOME}/.local/bin"(:|$) ]]; then
+  if [[ "$PATH" =~ $HOME"/.local/bin" ]]; then
     mkdir -p $HOME/.local/bin
     ln -sf $nodepath $HOME/.local/bin/node
     ln -sf $npmpath $HOME/.local/bin/npm
     ln -sf $npxpath $HOME/.local/bin/npx
-  elif [[ "$PATH" =~ (^|:)"${HOME}/bin"(:|$) ]]; then
+  elif [[ "$PATH" =~ $HOME"/bin" ]]; then
     mkdir -p $HOME/bin
     ln -sf $nodepath $HOME/bin/node
     ln -sf $npmpath $HOME/bin/npm
