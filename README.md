@@ -3,7 +3,7 @@ extremely simple node and npm install script written in bash
 
 # usage
 one-line install
-`@TODO`
+`curl -fs https://raw.githubusercontent.com/serapath/node-and-npm/master/install | sh`
 
 
 It is licensed under MIT
